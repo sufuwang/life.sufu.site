@@ -14,8 +14,7 @@
       "modules": true
     },
     "ecmaVersion": 2020,
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+    "sourceType": "module"
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
@@ -25,7 +24,9 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "semi": "error",
-    "eol-last": ["error", "always"]
+    "eol-last": ["error", "always"],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-undef": "off"
   }
   // "settings": {
   //   "import/resolver": {
