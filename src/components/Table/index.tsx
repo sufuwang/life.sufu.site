@@ -9,10 +9,10 @@ const Table = () => {
 
   const [expandedRowKeys, setExpandedRowKeys] = useState(['2']);
 
-  const handleOpenDeatil = (key) => {
+  const handleOpenDeatil = (key: string) => {
     setExpandedRowKeys(expandedRowKeys.includes(key) ? [] : [key]);
   };
-  const columns: ColumnsType = [
+  const columns: ColumnsType<object> = [
     {
       title: '日期',
       dataIndex: 'date',
@@ -75,7 +75,7 @@ const Table = () => {
 
 export default Table;
 
-const data = [];
+const data: Array<object> = [];
 for (const key of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34]) {
   data.push({
     key: key.toString(),

@@ -36,7 +36,7 @@ const renderTable = () => {
       outcome: `支出-${i}`,
     });
   }
-  const columns: ColumnsType = [
+  const columns: ColumnsType<object> = [
     { title: '姓名', dataIndex: 'name', onCell: (_, index = 0) => {
       if (index < 3) {
         return { rowSpan: index === 0 ? 3 : 0 };

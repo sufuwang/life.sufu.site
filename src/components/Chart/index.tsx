@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Line } from '@ant-design/plots';
+import { Line, LineConfig } from '@ant-design/plots';
 import styles from './index.module.less';
 
 const DemoLine = () => {
@@ -17,7 +17,7 @@ const DemoLine = () => {
         console.log('fetch data failed', error);
       });
   };
-  const config = {
+  const config: LineConfig = {
     data,
     padding: 'auto',
     xField: 'Date',
@@ -30,4 +30,4 @@ const DemoLine = () => {
   return <Line className={styles.chart} {...config} />;
 };
 
-export default DemoLine
+export default DemoLine;
