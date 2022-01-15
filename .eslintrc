@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "globals": {
+    "JSX": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "tsx": true,
+      "modules": true
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "semi": "error",
+    "eol-last": ["error", "always"],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-undef": "off"
+  }
+  // "settings": {
+  //   "import/resolver": {
+  //     "alias": {
+  //       "map": [["@", "./src/"]]
+  //     },
+  //     "node": {
+  //       "extensions": [".js", ".jsx", ".ts", ".tsx"]
+  //     },
+  //     "typescript": {
+  //       "project": "./tsconfig.json"
+  //     }
+  //   }
+  // }
+}
