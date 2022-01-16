@@ -1,0 +1,47 @@
+.form {
+  height: 100%;
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: 6% 18%;
+    .leftChild {
+      padding-left: 8%;
+      .date {
+        width: 220px;
+      }
+    }
+    .divider {
+      height: auto;
+      margin: 10px 24px;
+    }
+    .rightChild {
+      .space {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        .spaceItem {
+          margin-bottom: 8px;
+        }
+        > :nth-last-child(1) {
+          align-self: center;
+        }
+      }
+      .spaceButton {
+        margin-top: 12px;
+      }
+      .select {
+        width: 120px;
+      }
+      .inputNumber {
+        width: 140px;
+      }
+    }
+    .avatarItem {
+      display: flex;
+      flex-direction: row;
+      margin-left: 42px;
+    }
+  }
+}

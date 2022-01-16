@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Table as AntdTable } from 'antd';
-import { DownOutlined, UpOutlined } from '@ant-design/icons';
+import { Link } from "react-router-dom";
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { ColumnsType } from 'antd/lib/table/interface';
 import Detail from "./Detail";
 import styles from './index.module.less';
@@ -46,9 +47,12 @@ const Table = () => {
       },
       render: (...args) => {
         const key = (args[args.length - 1] + 2).toString();
-        const str = expandedRowKeys.includes(key) ? <>关闭详情&nbsp;<UpOutlined /></> : <>查看详情&nbsp;<DownOutlined /></>;
+        const str = expandedRowKeys.includes(key) ? <>关闭详情&nbsp;<CaretUpOutlined /></> : <>查看详情&nbsp;<CaretDownOutlined /></>;
         return (
-          <a onClick={() => handleOpenDeatil(key)}>{str}</a>
+          <div className={styles.operationContainer}>
+            <Link to='/tally/item?type=edit'>修改数据</Link>
+            <a onClick={() => handleOpenDeatil(key)}>{str}</a>
+          </div>
         );
       }
     }
@@ -80,7 +84,7 @@ for (const key of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,2
   data.push({
     key: key.toString(),
     date: '2022.1.15',
-    name: key % 2 === 0 ? '王凯' : '曾咪咪',
+    name: key % 2 === 0 ? '王凯' : '咪咪',
     subtotal: key * 100,
     clothes: key,
     food: key,

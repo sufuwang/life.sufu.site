@@ -21,7 +21,7 @@ const renderTable = () => {
   for (const i of [1,2,3]) {
     data.push({
       key: i,
-      name: '曾咪咪',
+      name: '咪咪',
       type: `类型-${i}`,
       comment: `备注-${i}`,
       outcome: `支出-${i}`,
