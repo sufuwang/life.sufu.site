@@ -18,10 +18,13 @@
     "baseUrl": ".",
     "typeRoots": ["./src/types"],
     "paths": {
+      "@root/*": ["./*"],
       "@pages/*": ["./src/pages/*"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@const/*": ["./src/const/*"],
     },
   },
-  "include": ["./src"],
+  "include": ["./src/**/*"],
   "exclude": ["node_modules", "vite.config.ts"]
 }

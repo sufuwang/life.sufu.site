@@ -1,9 +1,9 @@
-import Detail from "./Detail";
+import Table from "./Table";
 import Trend from "./Trend";
 import Item from "./Item";
 
 const Tally = {
-  Detail,
+  Table,
   Trend,
   Item
 };

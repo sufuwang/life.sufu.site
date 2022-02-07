@@ -10,7 +10,7 @@ const router = () => {
     <Container.WithNavigate>
       <Routes>
         <Route path="/tally">
-          <Route path="detail" element={<Tally.Detail />} />
+          <Route path="table" element={<Tally.Table />} />
           <Route path="trend" element={<Tally.Trend />} />
           <Route path="item" element={<Tally.Item />} />
         </Route>

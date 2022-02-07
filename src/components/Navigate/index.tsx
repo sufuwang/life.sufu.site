@@ -28,7 +28,7 @@ const Navigation = () => {
         <SubMenu key="Tally" icon={<DollarCircleOutlined />} title="收支">
           <Menu.ItemGroup key="Analyse" title="统计分析">
             <Menu.Item key="Table">
-              <Link to="/tally/detail">收支详情</Link>
+              <Link to="/tally/table">收支详情</Link>
             </Menu.Item>
             <Menu.Item key="Chart">
               <Link to="/tally/trend">收支趋势</Link>

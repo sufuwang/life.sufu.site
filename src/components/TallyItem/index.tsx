@@ -1,45 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Space, Divider, DatePicker, Avatar, Select, InputNumber } from 'antd';
+import React, { useState } from 'react';
+import { Form, Input, Button, Space, Divider, DatePicker, Avatar, Select, InputNumber, Statistic } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import localstorage from '@utils/localstorage';
+import axios from '@utils/axios';
 import moment from 'moment';
 import styles from './index.module.less';
+import TallyKind from '@const/types.json';
+
+console.info('TallyKind: ', TallyKind);
 
 const { Option } = Select;
 const { TextArea } = Input;
 
-export interface TypeProps {
-  type: 'add' | 'edit'
+interface TypeItem {
+  type: string;
+  outcome: number;
+  note: string;
 }
 
-const AddItem = ({ type }: TypeProps) => {
-  const [isAddStatus, setStatus] = useState(type === 'add');
-  const [curDate, setCurDate] = useState(moment.valueOf());
+export interface TypeProps {
+  isDisabledDate?: boolean
+}
 
-  useEffect(() => {
-    setCurDate(moment.valueOf());
-    setStatus(type === 'add');
-  }, [type]);
+const AddItem = ({ isDisabledDate = false }: TypeProps) => {
+  const [form] = Form.useForm();
+  const [isDisabledSubmit, setDisabledSubmit] = useState(true);
+
+  const handleSubmit = async () => {
+    const { date, item } = await form.validateFields();
+    await axios({
+      method: 'post',
+      url: 'tally/add',
+      data: {
+        create_date: date.format('YYYY-MM-DD HH:mm:ss.SSS'),
+        data: item
+      }
+    });
+  };
+  const handleChange = (_: unknown, { item }: { item: Array<TypeItem> }) => {
+    const ds = item.filter(d => !!d).map(d => d.outcome);
+    setDisabledSubmit(ds.length === 0);
+    const total = ds.length ? ds.reduce((total, cur) => total + cur) : 0;
+    form.setFieldsValue({ total });
+  };
 
   return (
-    <Form className={styles.form} autoComplete="off">
+    <Form className={styles.form} autoComplete="off" form={form} onValuesChange={handleChange}>
       <div className={styles.container}>
         <div className={styles.leftChild}>
           <div className={styles.avatarItem}>
             <Avatar src="https://joeschmoe.io/api/v1/random" />
-            <Form.Item name="userName">
-              <Input placeholder='sufuwang' bordered={false} disabled />
+            <Form.Item name='account'>
+              <Input placeholder={localstorage.get('user').account} bordered={false} disabled />
             </Form.Item>
           </div>
-          <Form.Item label="时间" name="date" initialValue={curDate}>
-            <DatePicker className={styles.date} disabled={isAddStatus} />
+          <Form.Item label="时间" name="date" initialValue={moment()}>
+            <DatePicker className={styles.date} disabled={isDisabledDate} />
           </Form.Item>
           <Form.Item label="小结" name="total">
-            <Input placeholder='10000000' bordered={false} disabled />
+            <Statistic />
           </Form.Item>
         </div>
         <Divider className={styles.divider} type='vertical' />
         <div className={styles.rightChild}>
-          <Form.List name="users">
+          <Form.List name="item">
             {(fields, { add, remove }) => (
               <>
                 {fields.map(({ key, name, ...restField }) => (
@@ -47,33 +71,31 @@ const AddItem = ({ type }: TypeProps) => {
                     <Form.Item
                       {...restField}
                       className={styles.spaceItem}
-                      name={[name, 'type']}
-                      initialValue="Yiminghe2"
-                      rules={[{ required: true, message: 'Missing first name' }]}
+                      name={[name, 'kind']}
+                      initialValue="goodsByHome"
                     >
                       <Select className={styles.select}>
-                        <Option value="jack">衣</Option>
-                        <Option value="lucy">食</Option>
-                        <Option value="Yiminghe">住</Option>
-                        <Option value="Yiminghe1">行</Option>
-                        <Option value="Yiminghe2">家用物品</Option>
-                        <Option value="Yiminghe3">个人物品</Option>
-                        <Option value="Yiminghe4">其他</Option>
+                        <Option value="clothes">衣</Option>
+                        <Option value="food">食</Option>
+                        <Option value="living">住</Option>
+                        <Option value="transport">行</Option>
+                        <Option value="goodsByHome">家用物品</Option>
+                        <Option value="goodsByPerson">个人物品</Option>
+                        <Option value="other">其他</Option>
                       </Select>
                     </Form.Item>
                     <Form.Item
                       {...restField}
                       className={styles.spaceItem}
                       name={[name, 'outcome']}
-                      rules={[{ required: true, message: 'Missing last name' }]}
+                      rules={[{ required: true, message: '请填写金额' }, { type: 'number', message: '最小金额为 1', min: 1 }]}
                     >
-                      <InputNumber className={styles.inputNumber} min={1} placeholder='请填写金额' />
+                      <InputNumber className={styles.inputNumber} placeholder='请填写金额' />
                     </Form.Item>
                     <Form.Item
                       {...restField}
                       className={styles.spaceItem}
-                      name={[name, 'note']}
-                      rules={[{ required: true, message: 'Missing last name' }]}
+                      name={[name, 'detail']}
                     >
                       <TextArea autoSize={{ minRows: 1, maxRows: 3 }} placeholder='请填写备注' />
                     </Form.Item>
@@ -89,7 +111,7 @@ const AddItem = ({ type }: TypeProps) => {
             )}
           </Form.List>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" disabled={isDisabledSubmit} onClick={handleSubmit}>
               提交
             </Button>
           </Form.Item>
