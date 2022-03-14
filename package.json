@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "cross-env platform=development vite",
     "dev:pre": "cross-env platform=production vite",
-    "build": "tsc && vite build",
+    "build": "tsc && cross-env platform=production vite build",
     "preview": "vite preview"
   },
   "dependencies": {
