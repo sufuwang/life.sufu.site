@@ -2,7 +2,8 @@
   "name": "asas",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env platform=development vite",
+    "dev:pre": "cross-env platform=production vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -11,6 +12,7 @@
     "@ant-design/icons": "^4.7.0",
     "@ant-design/plots": "^1.0.7",
     "antd": "^4.18.3",
+    "cross-env": "^7.0.3",
     "less": "^4.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
