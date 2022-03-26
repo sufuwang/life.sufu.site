@@ -3,6 +3,7 @@ import { login } from './request';
 import env from '@root/env';
 
 const { SYSTEM_URL } = env;
+console.info('SYSTEM_URL: ', SYSTEM_URL);
 
 const auth = async () => {
   const sessionId = cookies.get('sessionId');

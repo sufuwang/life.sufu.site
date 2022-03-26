@@ -2,8 +2,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 const path = require('path');
 
-console.info('process.env.platform:', process.env.platform)
-
 export default defineConfig({
   plugins: [react()],
   resolve: {
