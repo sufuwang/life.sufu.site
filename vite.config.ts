@@ -19,6 +19,7 @@ export default defineConfig({
     port: 3002
   },
   define: {
-    ProcessEnvPlatform: JSON.stringify(process.env.platform)
+    ProcessEnvPlatform: JSON.stringify(process.env.platform),
+    ProcessEnvBuildTime: JSON.stringify(new Date().toLocaleString())
   }
 });

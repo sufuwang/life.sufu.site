@@ -1,4 +1,8 @@
-const settings: Record<typeof ProcessEnvPlatform, any> = {
+interface TypeUrl {
+  BASE_URL: string
+  SYSTEM_URL: string
+}
+const settings: Record<typeof ProcessEnvPlatform, TypeUrl> = {
   development: {
     BASE_URL: 'http://localhost:4000',
     SYSTEM_URL: 'http://localhost:3001',
