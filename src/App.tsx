@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   static async getDerivedStateFromProps() {
-    await entryTask();
+    // await entryTask();
   }
 
   render(): React.ReactNode {
