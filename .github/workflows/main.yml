@@ -34,5 +34,5 @@ jobs:
           git config --global user.email "1137120948@qq.com"
           git config --global user.name "sufuwang"
           git add .
-          git commit -m 'feat: 更新 life 子库'
+          git commit -m 'feat: 更新 life dist'
           git push
