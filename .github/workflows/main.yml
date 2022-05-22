@@ -16,7 +16,7 @@ jobs:
         with:
           ref: master
           repository: sufuwang/dist.sufu.site
-          token: ${{ secrets.DISTSUFUSITE }}
+          token: ${{ secrets.PersonalAccessToken }}
           path: ./dist.sufu.site
 
       - name: 执行脚本
