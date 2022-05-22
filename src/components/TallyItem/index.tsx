@@ -51,7 +51,7 @@ const AddItem = ({ isDisabledDate = false }: TypeProps) => {
           <div className={styles.avatarItem}>
             <Avatar src="https://joeschmoe.io/api/v1/random" />
             <Form.Item name='account'>
-              <Input placeholder={localstorage.get('user').account} bordered={false} disabled />
+              <Input placeholder={localstorage.get('user')?.account || 'Account'} bordered={false} disabled />
             </Form.Item>
           </div>
           <Form.Item label="时间" name="date" initialValue={moment()}>

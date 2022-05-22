@@ -3,7 +3,7 @@ import zhCN from 'antd/lib/locale/zh_CN';
 import Routers from './router';
 import { BrowserRouter } from "react-router-dom";
 import { ConfigProvider } from 'antd';
-import entryTask from '@utils/entryTask';
+// import entryTask from '@utils/entryTask';
 
 class App extends React.Component {
   constructor(props = {}) {
@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   static async getDerivedStateFromProps() {
-    await entryTask;
+    // await entryTask;
   }
 
   render(): React.ReactNode {
