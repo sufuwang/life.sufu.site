@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react';
 const path = require('path');
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+  ],
   resolve: {
     alias: [
       { find: '@root', replacement: path.resolve(__dirname, '.') },
@@ -19,5 +21,13 @@ export default defineConfig({
   define: {
     ProcessEnvPlatform: JSON.stringify(process.env.platform),
     ProcessEnvBuildTime: JSON.stringify(new Date().toLocaleString())
+  },
+  build: {
+    terserOptions: {
+      compress: {
+        drop_console: false,
+        drop_debugger: true,
+      },
+    }
   }
 });

@@ -15,7 +15,10 @@ const Heart = () => {
   const [curTime, setCurTime] = useState<TypeTime>({});
 
   useEffect(() => {
-    setInterval(() => setCurTime(getData()), 100);
+    const id = setInterval(() => setCurTime(getData()), 100);
+    return () => {
+      clearInterval(id);
+    };
   }, []);
 
   const getData = (): TypeTime => {
